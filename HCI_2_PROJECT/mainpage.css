@@ -1,0 +1,363 @@
+/* === General Reset & Base Styles === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    /* Muted brown-gray background color for the page border */
+    background-color: #a0a095; 
+}
+
+/* === Main Layout Wrapper === */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    margin-left: 65px; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Sidebar (Vertical Navbar) === */
+.sidebar {
+    width: 65px;
+    /* Near-white background */
+    background-color: #EAEAEA; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+}
+
+.sidebar-nav {
+    flex-grow: 1; 
+    padding: 20px 0;
+    width: 100%;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+/* Link and List Item Container */
+.sidebar-nav li, .sidebar-top a, .sidebar-bottom a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sidebar-nav a, .sidebar-top a, .sidebar-bottom a {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Image/Icon Styling */
+.sidebar img {
+    width: 22px; 
+    height: 22px;
+    object-fit: contain;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+/* Hover State (Subtle background change) */
+.sidebar-nav li:hover, .sidebar-top a:hover, .sidebar-bottom a:hover {
+    background-color: #F0F0F0; 
+}
+
+.sidebar-nav li:hover img, .sidebar-top a:hover img, .sidebar-bottom a:hover img {
+    opacity: 0.9;
+}
+
+/* Active State (For the main "Add Idea" link) */
+.active-link {
+    /* Relying on accent bar for indication, kept background neutral */
+    background-color: #EAEAEA; 
+}
+
+.active-link img {
+    opacity: 1;
+}
+
+/* Active Accent Bar */
+.active-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #58b07c; /* Primary accent color */
+    border-radius: 0 5px 5px 0;
+}
+
+/* Profile Item at the top */
+.profile-link img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.profile-link:hover img {
+    border-color: #58b07c;
+}
+
+/* === Hero Header Section - LOCAL PHOTO IMPLEMENTED === */
+.hero {
+    position: relative;
+    height: 400px;
+    
+    /* UPDATED: Using your local file name in the IMAGES folder */
+    background-image: url('IMAGES/mainpagebg.jpeg'); 
+    
+    background-size: cover; 
+    background-position: center; 
+    
+    /* Slanted bottom edge effect */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); 
+    margin-bottom: -50px;
+}
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Keep the right padding for space from edge, but make left smaller */
+    padding: 15px 30px 0 65px; 
+    display: flex;
+    /* CHANGE: Aligns user-info to the right edge */
+    justify-content: flex-end; 
+    align-items: flex-start;
+}
+
+.page-title {
+    color: #fff;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+/* User Info (Bell and Avatar) */
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info i {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-right: 15px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+}
+
+/* Hero Text (IDEAS ARE SEED) */
+.hero-text {
+    position: absolute;
+    bottom: 25%;
+    left: 100px;
+    color: #fff;
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 700;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+
+.hero-text h1 {
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+/* === Content Section (Input Blocks) === */
+.idea-section {
+    flex-grow: 1;
+    /* Light green/teal background for the bottom area */
+    background-color: #E0EAE3; 
+    padding: 70px 100px 30px 100px;
+    display: flex;
+    gap: 50px;
+}
+
+.idea-input {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+
+.idea-input .subtitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    /* Dark gray subtitle color */
+    color: #555555; 
+    margin-bottom: 10px;
+}
+
+.idea-input textarea {
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button {
+    width: 100px;
+    padding: 10px;
+    background-color: #58b07c; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-start;
+}
+
+.submit-button:hover {
+    background-color: #4aa776;
+}
+
+.idea-image {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.idea-image h2 {
+    font-size: 1.8rem;
+    /* Dark olive/teal heading color */
+    color: #1c3f2c; 
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.idea-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* === Footer === */
+.footer {
+    padding: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #333;
+    /* Background color matches content area */
+    background-color: #E0EAE3; 
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 1024px) {
+    .idea-section {
+        padding: 50px 50px 30px 50px;
+    }
+
+    .hero-text {
+        font-size: 3rem;
+        left: 50px;
+    }
+    .hero-text h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Sidebar becomes a horizontal bottom bar */
+    .sidebar {
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        padding: 0;
+        bottom: 0;
+        top: auto;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.05);
+    }
+    
+    .sidebar-top, .sidebar-bottom {
+        display: none;
+    }
+    
+    .sidebar-nav {
+        flex-direction: row;
+        padding: 0;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .sidebar-nav li {
+        height: 60px;
+        padding: 0;
+    }
+
+    .main-content {
+        margin-left: 0;
+        margin-bottom: 60px;
+    }
+    
+    .idea-section {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .hero {
+        height: 300px;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+
+    .header-overlay {
+        padding: 15px 15px 0 15px;
+    }
+
+    .hero-text {
+        font-size: 2.5rem;
+        left: 20px;
+        bottom: 10%;
+    }
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+    
+    .footer {
+        display: none;
+    }
+}

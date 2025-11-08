@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f5f5f5;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 70px;
+    background-color: #e6f2e6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.menu ul {
+    list-style: none;
+}
+
+.menu ul li {
+    margin: 15px 0;
+}
+
+.menu ul li img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: url('mountains.jpg') no-repeat center center/cover;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+/* Ideas Section */
+.ideas {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.idea-card {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+.idea1 { background-color: #a8e6cf; }
+.idea2 { background-color: #81e6d9; }
+.idea3 { background-color: #68d391; }
+.idea4 { background-color: #48bb78; }
+.idea5 { background-color: #38a169; }
+.idea6 { background-color: #2f855a; }
+.idea7 { background-color: #22543d; }
+
+.date {
+    font-size: 0.9em;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8em;
+    color: #555;
+}

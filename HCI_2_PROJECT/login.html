@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-image">
+            <img src="IMAGES/Logo.png" alt="Logo" class="logo" />
+        </div>
+
+        <div class="auth-form">
+            <h2>Welcome Back!</h2>
+            <p class="subtitle">Login to continue</p>
+
+            <form id="loginForm">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+
+                <button type="submit">Login</button>
+
+                <p class="switch">Don’t have an account?
+                    <a href="signup.html">Sign up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Stop default form submission
+
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!email || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            window.location.href = "mainpage.html";
+        });
+    </script>
+</body>
+
+</html>
