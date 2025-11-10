@@ -1,89 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ADD IDEA / MAIN PAGE | IdeaSpark</title>
-  <link rel="stylesheet" href="mainpage.css">
-  <!-- Material Icons -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD IDEA / MAIN PAGE | IdeaSpark</title>
+    <link rel="stylesheet" href="mainpage.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-  <div class="page-wrapper">
+    <div class="page-wrapper">
 
-    <!-- Hamburger icon (always visible) -->
-    <span class="hamburger-icon" id="hamburger-icon">&#9776;</span>
+        <!-- Hamburger icon (always visible) -->
+        <span class="hamburger-icon" id="hamburger-icon">&#9776;</span>
 
-    <!-- Sidebar -->
-<aside class="sidebar" id="sidebar">
-  <div class="sidebar-nav-wrapper">
-    <nav class="sidebar-nav">
-      <ul>
-        <li class="active-link"><a href="editProfile.html" title="Profile"><img src="IMAGES/Navbar/profile.png" alt="Profile"></a></li>
-        <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Navbar/addidea.png" alt="Add Idea"></a></li>
-        <li><a href="categories.html" title="Tag Idea"><img src="IMAGES/Navbar/tagidea.png" alt="Tag Idea"></a></li>
-        <li><a href="search-idea.html" title="View Idea List"><img src="IMAGES/Navbar/list.png" alt="View Idea List"></a></li>
-        <li><a href="tag-idea.html" title="Edit Idea"><img src="IMAGES/Navbar/edit.png" alt="Edit Idea"></a></li>
-        <li><a href="pin-idea.html" title="Search Idea"><img src="IMAGES/Navbar/search.png" alt="Search Idea"></a></li>
-        <li><a href="archive.html" title="Pin Idea"><img src="IMAGES/Navbar/pin.png" alt="Pin Idea"></a></li>
-        <li><a href="schedule.html" title="Categories"><img src="IMAGES/Navbar/categories.png" alt="Categories"></a></li>
-      </ul>
-    </nav>
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-nav-wrapper">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="editProfile.html" title="Profile"><img src="IMAGES/Navbar/profile.png"
+                                    alt="Profile"></a></li>
+                        <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Navbar/addidea.png"
+                                    alt="Add Idea"></a></li>
+                        <li><a href="categories.html" title="Tag Idea"><img src="IMAGES/Navbar/tagidea.png"
+                                    alt="Tag Idea"></a></li>
+                        <li><a href="search-idea.html" title="View Idea List"><img src="IMAGES/Navbar/list.png"
+                                    alt="View Idea List"></a></li>
+                        <li><a href="tag-idea.html" title="Edit Idea"><img src="IMAGES/Navbar/edit.png"
+                                    alt="Edit Idea"></a></li>
+                        <li><a href="pin-idea.html" title="Search Idea"><img src="IMAGES/Navbar/search.png"
+                                    alt="Search Idea"></a></li>
+                        <li><a href="archive.html" title="Pin Idea"><img src="IMAGES/Navbar/pin.png" alt="Pin Idea"></a>
+                        </li>
+                        <li><a href="schedule.html" title="Categories"><img src="IMAGES/Navbar/categories.png"
+                                    alt="Categories"></a></li>
+                    </ul>
+                </nav>
 
-    <!-- Settings icon at the bottom -->
-    <div class="sidebar-bottom">
-      <a href="settings.html" title="Settings">
-        <img src="IMAGES/Navbar/settings.png" alt="Settings">
-      </a>
+                <!-- Settings icon at the bottom -->
+                <div class="sidebar-bottom">
+                    <a href="settings.html" title="Settings">
+                        <img src="IMAGES/Navbar/settings.png" alt="Settings">
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="hero">
+                <div class="header-overlay">
+                    <div class="user-info">
+                        <i class="fa-solid fa-bell"></i>
+                        <img src="IMAGES/default-avatar.png" alt="User Avatar" class="user-avatar" id="mainAvatar">
+                    </div>
+
+
+                </div>
+                <div class="hero-text">
+                    <h1>IDEAS<br>ARE SEED</h1>
+                </div>
+            </header>
+
+            <section class="idea-section">
+                <div class="idea-input">
+                    <p class="subtitle">Let the Idea Flow</p>
+                    <textarea placeholder="Write your idea here..."></textarea>
+                    <button type="submit" class="submit-button">Submit</button>
+                </div>
+
+                <div class="idea-image">
+                    <h2>INPUT YOUR DAILY IDEAS</h2>
+                    <img src="IMAGES/lightbulb.gif" alt="Lightbulb Graphic">
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>&copy; 2025 IdeaSpark Inc. All rights reserved.</p>
+            </footer>
+        </main>
+
     </div>
-  </div>
-</aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <header class="hero">
-        <div class="header-overlay">
-          <div class="user-info">
-            <i class="fa-solid fa-bell"></i>
-            <img src="IMAGES/peter.jpg" alt="User Avatar" class="user-avatar">
-          </div>
-        </div>
-        <div class="hero-text">
-          <h1>IDEAS<br>ARE SEED</h1>
-        </div>
-      </header>
+    <!-- para sa hamburger bar -->
+    <script>
+        const hamburger = document.getElementById('hamburger-icon');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
 
-      <section class="idea-section">
-        <div class="idea-input">
-          <p class="subtitle">Let the Idea Flow</p>
-          <textarea placeholder="Write your idea here..."></textarea>
-          <button type="submit" class="submit-button">Submit</button>
-        </div>
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-active');
+            mainContent.classList.toggle('shifted'); // optional: push content to the right
+        });
 
-        <div class="idea-image">
-          <h2>INPUT YOUR DAILY IDEAS</h2>
-          <img src="IMAGES/lightbulb.gif" alt="Lightbulb Graphic">
-        </div>
-      </section>
+        // Update main page avatar from localStorage
+        const mainAvatar = document.querySelector('#mainAvatar');
+        const savedAvatarMain = localStorage.getItem('profileImage');
+        mainAvatar.src = savedAvatarMain || 'IMAGES/default-avatar.png';
 
-      <footer class="footer">
-        <p>&copy; 2025 IdeaSpark Inc. All rights reserved.</p>
-      </footer>
-    </main>
+        // === Dynamic Active Link ===
+        const currentPage = window.location.pathname.split("/").pop();
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
 
-  </div>
-
-  <!-- para sa hamburger bar -->
-  <script>
-    const hamburger = document.getElementById('hamburger-icon');
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.querySelector('.main-content');
-
-    hamburger.addEventListener('click', () => {
-      sidebar.classList.toggle('sidebar-active');
-      mainContent.classList.toggle('shifted'); // optional: push content to the right
-    });
-  </script>
+        sidebarLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.parentElement.classList.add('active-link');
+            }
+        });
+    </script>
 </body>
+
 </html>
