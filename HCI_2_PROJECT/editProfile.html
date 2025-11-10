@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDIT PROFILE | IdeaSpark</title>
+    <link rel="stylesheet" href="editProfile.css">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- Hamburger icon -->
+    <span class="hamburger-icon" id="hamburger-icon">&#9776;</span>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-nav-wrapper">
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="editProfile.html" title="Profile"><img src="IMAGES/Navbar/profile.png" alt="Profile"></a></li>
+                    <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Navbar/addidea.png" alt="Add Idea"></a></li>
+                    <li><a href="categories.html" title="Tag Idea"><img src="IMAGES/Navbar/tagidea.png" alt="Tag Idea"></a></li>
+                    <li><a href="search-idea.html" title="View Idea List"><img src="IMAGES/Navbar/list.png" alt="View Idea List"></a></li>
+                    <li><a href="tag-idea.html" title="Edit Idea"><img src="IMAGES/Navbar/edit.png" alt="Edit Idea"></a></li>
+                    <li><a href="pin-idea.html" title="Search Idea"><img src="IMAGES/Navbar/search.png" alt="Search Idea"></a></li>
+                    <li><a href="archive.html" title="Pin Idea"><img src="IMAGES/Navbar/pin.png" alt="Pin Idea"></a></li>
+                    <li><a href="schedule.html" title="Categories"><img src="IMAGES/Navbar/categories.png" alt="Categories"></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="settings.html" title="Settings">
+                    <img src="IMAGES/Navbar/settings.png" alt="Settings">
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="main-header">
+            <h1>Edit Profile</h1>
+            <div class="user-profile-header">
+                <!-- Avatar -->
+                <img src="IMAGES/default-avatar.png" alt="User Avatar" class="user-avatar-header" id="profileAvatar">
+                <!-- Hidden File Input -->
+                <input type="file" id="profileInput" accept="image/*" style="display:none">
+                <!-- Change Photo Button -->
+                <button type="button" class="btn btn-change-profile" id="changeProfileBtn">Change Photo</button>
+            </div>
+        </header>
+
+        <section class="profile-form-section">
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" placeholder="Enter your first name">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" placeholder="Enter your last name">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-with-icon">
+                    <input type="email" id="email" placeholder="Enter your email">
+                    <i class="far fa-envelope input-icon"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address">
+            </div>
+
+            <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="tel" id="contactNumber" placeholder="Enter your contact number">
+            </div>
+
+            <div class="form-group-row">
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" placeholder="Enter your city">
+                </div>
+                <div class="form-group">
+                    <label for="state">State</label>
+                    <input type="text" id="state" placeholder="Enter your state">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-with-icon">
+                    <input type="password" id="password" placeholder="Enter your password">
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-cancel">CANCEL</button>
+                <button type="submit" class="btn btn-save">SAVE</button>
+            </div>
+        </section>
+    </main>
+
+</div>
+
+<!-- Toast Notifications -->
+<div id="toast-success" class="toast toast-success">Profile saved successfully!</div>
+<div id="toast-error" class="toast toast-error">Please fill in all required fields correctly!</div>
+<div id="toast-email-error" class="toast toast-error">Please enter a valid email address!</div>
+
+<!-- Scripts -->
+<script>
+    // Sidebar toggle
+    const hamburger = document.getElementById('hamburger-icon');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.querySelector('.main-content');
+
+    hamburger.addEventListener('click', () => {
+        sidebar.classList.toggle('sidebar-active');
+        mainContent.classList.toggle('shifted');
+    });
+
+    // Dynamic active link
+    const currentPage = window.location.pathname.split("/").pop();
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    sidebarLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.parentElement.classList.add('active-link');
+        }
+    });
+
+    // === Profile Picture Handling ===
+    const profileInput = document.getElementById('profileInput');
+    const profileAvatar = document.getElementById('profileAvatar');
+
+    // Load avatar from localStorage or default
+    const savedAvatar = localStorage.getItem('profileImage');
+    profileAvatar.src = savedAvatar || 'IMAGES/default-avatar.png';
+
+    // Change avatar and save
+    const changeProfileBtn = document.getElementById('changeProfileBtn');
+    changeProfileBtn.addEventListener('click', () => profileInput.click());
+
+    profileInput.addEventListener('change', () => {
+        const file = profileInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                profileAvatar.src = e.target.result;
+                localStorage.setItem('profileImage', e.target.result); // Save for all pages
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // === Toast notifications ===
+    const toastSuccess = document.getElementById('toast-success');
+    const toastError = document.getElementById('toast-error');
+    const toastEmailError = document.getElementById('toast-email-error');
+
+    // === Save Button Validation with Email Check ===
+    const saveBtn = document.querySelector('.btn-save');
+    saveBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const inputs = [
+            document.getElementById('firstName'),
+            document.getElementById('lastName'),
+            document.getElementById('email'),
+            document.getElementById('address'),
+            document.getElementById('contactNumber'),
+            document.getElementById('city'),
+            document.getElementById('state'),
+            document.getElementById('password')
+        ];
+
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (input.value.trim() === '') allFilled = false;
+        });
+
+        const emailInput = document.getElementById('email').value.trim();
+        const emailValid = emailInput.includes('@') && emailInput.split('@')[1].includes('.');
+
+        if (!allFilled) {
+            showToast(toastError);
+        } else if (!emailValid) {
+            showToast(toastEmailError);
+        } else {
+            showToast(toastSuccess);
+        }
+    });
+
+    function showToast(toast) {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+</script>
+</body>
+</html>
