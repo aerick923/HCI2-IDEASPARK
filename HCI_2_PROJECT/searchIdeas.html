@@ -3,53 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Idea Spark</title>
-    styles.css
+    <title>IdeaSpark Search</title>
+    <link rel="stylesheet" href="searchIdeas.css">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="profile">
-                profile-icon.png
-            </div>
-            <nav class="menu">
-                <ul>
-                    <li>icon-user.png</li>
-                    <li>icon-lightbulb.png</li>
-                    <li>icon-pencil.png</li>
-                    <li>icon-list.png</li>
-                    <li>icon-trash.png</li>
-                    <li>icon-search.png</li>
-                    <li>icon-calendar.png</li>
-                    <li>icon-settings.png</li>
-                </ul>
-            </nav>
-        </aside>
+    <div class="page-wrapper">
+        <span class="hamburger-icon" id="hamburger-icon">&#9776;</span> 
 
-        <!-- Main Content -->
-        <main class="main-content">
+        
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-profile">
+                <img src="IMAGES/Sidebar/profile-placeholder.png" alt="Profile Icon" class="sidebar-profile-icon">
+            </div>
+            
+            <div class="sidebar-nav-wrapper">
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li><a href="editProfile.html" title="Profile"><img src="IMAGES/Sidebar/profile.png"
+                                    alt="Profile"><span>Profile</span></a></li>
+                        <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Sidebar/addidea.png"
+                                    alt="Add Idea"><span>Add Idea</span></a></li>
+                        <li><a href="categories.html" title="Categories"><img src="IMAGES/Sidebar/categories.png"
+                                    alt="Categories"><span>Categories</span></a></li>
+                        <li><a href="search-idea.html" title="View Idea List"><img src="IMAGES/Sidebar/list.png"
+                                    alt="View Idea List"><span>View Idea List</span></a></li>
+                        <li><a href="tag-idea.html" title="Edit Idea"><img src="IMAGES/Sidebar/edit.png"
+                                    alt="Edit Idea"><span>Edit Idea</span></a></li>
+                        <li class="active-link"><a href="pin-idea.html" title="Search Idea"><img src="IMAGES/Sidebar/search.png"
+                                    alt="Search Idea"><span>Search Idea</span></a></li>
+                        <li><a href="archive.html" title="Archive Idea"><img src="IMAGES/Sidebar/archive.png" alt="Archive Idea"><span>Archive Idea</span></a>
+                        </li>
+                        <li><a href="schedule.html" title="Schedule"><img src="IMAGES/Sidebar/schedule.png"
+                                    alt="Schedule"><span>Schedule</span></a></li>
+                        <li><a href="categories.html" title="Grid Categories"><img src="IMAGES/Sidebar/grid.png"
+                                    alt="Grid Categories"><span>Grid Categories</span></a></li>
+                    </ul>
+                </nav>
+
+                <div class="sidebar-bottom">
+                    <a href="settings.html" title="Settings">
+                        <img src="IMAGES/Sidebar/settings.png" alt="Settings"><span>Sett</span>
+                    </a>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content shifted">
             <header class="header">
-                <h1>IDEA SPARK</h1>
-                <p>WHERE YOUR IDEAS ARE STORED.</p>
+                <div class="header-text">
+                    <h1>IDEA SPARK</h1>
+                    <p>WHERE YOUR IDEAS ARE STORED.</p>
+                </div>
+                <div class="header-icons">
+                    <span class="material-icons notification-bell">notifications</span>
+                    <img src="IMAGES/user-avatar.jpg" alt="User Avatar" class="user-avatar" id="mainAvatar">
+                </div>
             </header>
 
-            <!-- Search Section -->
             <section class="search-section">
                 <div class="search-box">
-                    <input type="text" placeholder="SEARCH FOR YOUR IDEAS HERE">
-                    icon-search.png
+                    <span class="material-icons search-icon">search</span>
+                    <input type="text" id="idea-search-input" placeholder="SEARCH FOR YOUR IDEAS HERE">
                 </div>
                 <div class="illustration">
-                    idea-illustration.png
+                    <img src="IMAGES/idea-illustration.png" alt="Ideas Illustration">
                 </div>
             </section>
+            
+            <section class="search-results" id="search-results">
+                <p class="search-info">Start typing above to search your ideas!</p>
+            </section>
 
-            <!-- Footer -->
             <footer class="footer">
                 <p>© 2025 IdeaSpark Inc. All rights reserved.</p>
             </footer>
         </main>
     </div>
+
+    <script>
+        // --- Existing UI Logic ---
+        const hamburger = document.getElementById('hamburger-icon');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.querySelector('.main-content');
+        const mainAvatar = document.querySelector('#mainAvatar'); 
+        
+        // Sidebar toggle
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-active');
+            mainContent.classList.toggle('shifted'); 
+        });
+
+        // Update avatar
+        const savedAvatarMain = localStorage.getItem('profileImage');
+        if (mainAvatar) {
+            mainAvatar.src = savedAvatarMain || 'IMAGES/user-avatar.jpg';
+        }
+
+        // Dynamic Active Link
+        const currentPage = window.location.pathname.split("/").pop();
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+
+        sidebarLinks.forEach(link => {
+            // FIX: Use closest('li') to apply active class correctly to the list item container
+            if (link.getAttribute('href') === currentPage) {
+                 link.closest('li').classList.add('active-link');
+            }
+        });
+
+        // Desktop layout enforcement
+        if (window.innerWidth >= 1024) { 
+             sidebar.classList.add('sidebar-active'); 
+             mainContent.classList.add('shifted');
+             hamburger.style.display = 'none';
+        }
+
+        // --- Search Functionality ---
+        const allIdeas = [
+            { id: 1, title: "Website Redesign", tags: ["Business", "UI/UX", "Project"] },
+            { id: 2, title: "Guitar Practice Routine", tags: ["Music", "Hobby"] },
+            { id: 3, title: "New Mobile Game Concept", tags: ["Games", "Project"] },
+            { id: 4, title: "Oil Painting Technique Guide", tags: ["Art", "Study"] },
+            { id: 5, title: "Marketing Strategy Q3", tags: ["Business", "Project"] },
+            { id: 6, title: "Personal Budget Tracker", tags: ["Finance", "Tool"] },
+        ];
+
+        const searchInput = document.getElementById('idea-search-input');
+        const resultsContainer = document.getElementById('search-results');
+        const yellowBox = document.querySelector('.search-section');
+
+        function renderIdeas(ideas) {
+            if (ideas.length === 0) {
+                resultsContainer.innerHTML = '<p class="search-info">No ideas found matching your search!</p>';
+                return;
+            }
+            
+            const resultsHtml = ideas.map(idea => `
+                <div class="result-card">
+                    <h3>${idea.title}</h3>
+                    <p>Tags: ${idea.tags.join(', ')}</p>
+                    <button>View Details</button>
+                </div>
+            `).join('');
+
+            resultsContainer.innerHTML = resultsHtml;
+        }
+
+        function searchIdeas() {
+            const query = searchInput.value.toLowerCase().trim();
+            
+            if (query === "") {
+                resultsContainer.innerHTML = '<p class="search-info">Start typing above to search your ideas!</p>';
+                yellowBox.style.display = 'flex';
+                return;
+            }
+
+            const filteredIdeas = allIdeas.filter(idea => 
+                idea.title.toLowerCase().includes(query) || 
+                idea.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+
+            // Hide the initial illustration when search results are displayed
+            yellowBox.style.display = 'none'; 
+            renderIdeas(filteredIdeas);
+        }
+
+        // Event listener for input changes (live search)
+        searchInput.addEventListener('input', searchIdeas);
+
+        // Initial render (show the prompt)
+        searchIdeas(); 
+    </script>
 </body>
 </html>
