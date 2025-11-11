@@ -1,83 +1,238 @@
+/* === General Reset & Base Styles === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* Adjusted font for clean look */
 }
 
 body {
-    display: flex;
-    background-color: #f5f5f5;
+    /* Set gradient background: white to light green */
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2F5E6 40%, #D4EAD9 100%); 
+    min-height: 100vh;
 }
 
-.container {
+/* === Main Layout Wrapper === */
+.page-wrapper {
     display: flex;
+    min-height: 100vh;
+}
+
+/* === Sidebar (Fixed Layout for Desktop) === */
+.sidebar {
+    width: 200px; /* Expanded width for text */
+    position: fixed;
+    top: 0;
+    left: -250px; /* Default hidden for mobile */
+    height: 100vh;
+    background-color: #EAEAEA;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    z-index: 150;
+    align-items: flex-start; 
+    padding: 20px 0 20px 0; 
+    transition: left 0.3s ease; /* Keep transition for hamburger animation */
+}
+
+.sidebar-active {
+    left: 0; /* Slide in on mobile/hamburger click */
+}
+
+/* Sidebar Profile Section */
+.sidebar-profile {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #D1E7DD; /* Light green background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 30px 20px; 
+    border: 2px solid white; 
+    box-shadow: 0 0 0 1px #ccc; 
+}
+
+.sidebar-profile-icon {
+    width: 70%; 
+    height: 70%;
+    object-fit: contain;
+    filter: brightness(0); /* Black icon */
+}
+
+/* Sidebar Nav Wrapper */
+.sidebar-nav-wrapper {
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 0; 
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+/* Sidebar Links (Container for Icon + Text) */
+.sidebar-nav li,
+.sidebar-bottom {
     width: 100%;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 70px;
-    background-color: #e6f2e6;
+.sidebar-nav li a,
+.sidebar-bottom a {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding-top: 20px;
+    width: 100%; 
+    height: 40px; 
+    margin: 5px 0; 
+    text-decoration: none;
+    color: #333; 
+    padding-left: 20px; 
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+.sidebar img {
+    width: 20px; 
+    height: 20px;
+    object-fit: contain;
+    opacity: 0.8; 
+    filter: brightness(0.2); 
+    margin-right: 10px; 
 }
 
-.menu ul {
-    list-style: none;
+.sidebar-nav span {
+    font-size: 1rem;
+    font-weight: 500;
 }
 
-.menu ul li {
-    margin: 15px 0;
+/* === Hover & Active Effects === */
+.sidebar-nav li a:hover,
+.sidebar-bottom a:hover {
+    background-color: #d1e7dd; 
 }
 
-.menu ul li img {
-    width: 24px;
-    height: 24px;
+.active-link-wrapper a {
+    background-color: #D1E7DD; /* Active page highlight */
 }
 
-/* Main Content */
+.active-link-wrapper img {
+    filter: brightness(0);
+}
+
+
+/* === Sidebar Bottom (Settings Icon) === */
+.sidebar-bottom {
+    margin-top: auto; 
+    margin-bottom: 0; 
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* === Main Content Layout === */
 .main-content {
-    flex: 1;
+    margin-left: 0; /* Default margin for mobile */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    overflow-x: hidden;
+    padding: 0 40px; 
+    transition: margin-left 0.3s ease;
 }
 
-/* Header */
+/* Shifted class for open sidebar on desktop or mobile */
+.shifted {
+    margin-left: 200px; 
+}
+
+/* === Hamburger Icon (Keep hidden on large screens) === */
+.hamburger-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 200;
+    display: none; /* Hidden by default, shown via media query/JS on mobile */
+}
+
+
+/* === Header === */
 .header {
-    text-align: center;
-    margin-bottom: 20px;
+    /* Aligned left on the main content area */
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    padding: 30px 0 0 0; 
+    color: #333;
+    width: 100%;
+}
+
+.header-text {
+    /* Ensure H1 and P align left */
+    text-align: left;
 }
 
 .header h1 {
-    font-size: 2.5em;
-    font-weight: bold;
+    font-size: 3rem; 
+    font-weight: 900; 
+    margin-bottom: 5px;
 }
 
 .header p {
-    font-size: 1em;
-    color: #555;
+    font-size: 1rem;
+    color: #333; 
+    font-weight: 500;
 }
 
-/* Search Section */
+/* Header Icons (Bell and Avatar) */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: -15px; /* Adjust to match image visual alignment */
+    /* Add margin to match the main content padding right */
+    margin-right: 40px; 
+}
+
+.notification-bell {
+    font-size: 30px;
+    color: #333; 
+    cursor: pointer;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333; 
+}
+
+
+/* === Search Section === */
 .search-section {
+    /* Set the yellow box style */
     background-color: #fcd34d;
     border-radius: 20px;
     padding: 40px;
-    width: 80%;
+    /* Takes up max available width within main-content padding */
+    width: 100%; 
     text-align: center;
     position: relative;
+    /* Match height to image, using a large fixed height */
+    height: 400px; 
+    margin-top: 50px; 
+    /* Centers the box in the available content space */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px; /* Optional: cap width slightly for very large screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .search-box {
@@ -86,7 +241,16 @@ body {
     background-color: white;
     border-radius: 30px;
     padding: 10px 20px;
-    margin-bottom: 20px;
+    width: 80%; /* Width of the search bar inside the yellow box */
+    max-width: 600px;
+    margin-top: 20px; /* Push down slightly */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+    font-size: 24px;
+    color: #555;
+    margin-right: 10px;
 }
 
 .search-box input {
@@ -94,23 +258,189 @@ body {
     outline: none;
     flex: 1;
     font-size: 1em;
-}
-
-.search-icon {
-    width: 24px;
-    height: 24px;
+    padding: 5px 0;
 }
 
 /* Illustration */
-.illustration img {
+.illustration {
     width: 100%;
-    max-width: 400px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
 }
 
-/* Footer */
+.illustration img {
+    /* Adjust position and size to match the provided image */
+    width: 100%; 
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* === Footer === */
 .footer {
+    padding: 15px;
     text-align: center;
+    font-size: 0.8rem;
+    color: #333;
+    background: none; /* Match gradient background */
+    margin-top: auto; 
+}
+
+
+/* === Media Query for Mobile (Restores collapse functionality) === */
+@media (max-width: 1024px) {
+    /* Show hamburger on smaller screens */
+    .hamburger-icon {
+        display: block; 
+    }
+
+    /* Adjust sidebar width for collapsed view on mobile */
+    .sidebar {
+        width: 65px;
+        left: -65px; 
+        padding-top: 50px;
+    }
+    .sidebar-active {
+        left: 0; 
+    }
+    .sidebar-nav li a,
+    .sidebar-bottom a {
+        padding-left: 0;
+        justify-content: center;
+    }
+    .sidebar-nav span {
+        display: none; /* Hide text on collapsed mobile sidebar */
+    }
+
+    /* Adjust main content margin for mobile */
+    .main-content {
+        margin-left: 0; /* Default margin is 0 */
+        padding: 0 15px;
+    }
+    .shifted {
+        margin-left: 65px; /* Shift by 65px when sidebar is open */
+    }
+
+    .header-icons {
+        margin-right: 15px; 
+    }
+
+    /* Locate and REPLACE the entire .search-section block */
+.search-section {
+    /* Set the yellow box style */
+    background-color: #fcd34d;
+    border-radius: 20px;
+    padding: 40px;
+    width: 100%; 
+    text-align: center;
+    position: relative; /* Keep this */
+    height: 400px; 
+    margin-top: 50px; 
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* NEW: Add z-index to the container itself to give it high priority in the main-content flow */
+    z-index: 10; 
+}
+
+
+/* Locate and REPLACE the entire .search-box block */
+.search-box {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px 20px;
+    width: 80%;
+    max-width: 600px;
     margin-top: 20px;
-    font-size: 0.8em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+    /* NEW/FIXED: Force the search box to the top layer */
+    position: relative; 
+    z-index: 20; /* Give it the highest z-index priority within the yellow box */
+}
+
+
+/* Locate and REPLACE the entire .illustration block */
+.illustration {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    /* NEW/FIXED: Ensure the illustration is below the search box */
+    z-index: 5; 
+    pointer-events: none; /* Crucial: This setting makes the element ignore mouse events, allowing clicks to pass through to the element underneath it. */
+}
+}
+
+/* Add to searchIdeas.css */
+
+/* Style for the search results container */
+.search-results {
+    padding: 20px 0;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.search-info {
+    text-align: center;
     color: #555;
+    font-style: italic;
+    padding: 40px 0;
+}
+
+/* Style for individual idea result cards */
+.result-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.result-card h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+.result-card p {
+    font-size: 0.9rem;
+    color: #777;
+    margin: 0;
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.result-card button {
+    background-color: #58b07c; /* Green color */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.result-card button:hover {
+    background-color: #4a9163;
 }
