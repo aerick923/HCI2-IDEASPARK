@@ -1,313 +1,207 @@
 /* === General Reset & Base Styles === */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #F5F5F5;
+    background-color: #F5F5F5;
 }
 
 /* === Main Layout Wrapper === */
 .page-wrapper {
-  display: flex;
-  min-height: 100vh;
+    display: flex;
+    min-height: 100vh;
 }
 
+/*
+| NOTE: The following styles are crucial for the main content layout.
+| Do NOT remove these, but understand they interact with sidebar.css.
+*/
 .main-content {
-  margin-left: 65px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  transition: margin-left 0.3s ease;
+    /* The 65px initial margin allows a sliver of background to show,
+       which is standard for a collapsible sidebar design. */
+    margin-left: 65px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    transition: margin-left 0.3s ease;
 }
 
-/* === Hamburger Icon === */
-.hamburger-icon {
-  font-size: 2rem;
-  cursor: pointer;
-  position: fixed;
-  top: 15px;
-  left: 20px;
-  z-index: 200;
-}
+/* The .shifted class is defined in sidebar.css */
+/* The .hamburger-icon and .sidebar styles are in sidebar.css */
+/* All sidebar/nav/link styles removed below this point */
 
-/* === Sidebar === */
-.sidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: -250px;
-  height: 100vh;
-  background-color: #EAEAEA;
-  box-shadow: 2px 0 10px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  z-index: 150;
-  transition: left 0.3s ease;
-}
-
-.sidebar-active {
-  left: 0;
-}
-
-.sidebar-nav-wrapper {
-  flex-direction: column;
-  flex-grow: 1;
-  width: 100%;
-  margin-top: 60px;
-}
-
-.sidebar-nav ul {
-  list-style: none;
-}
-
-.sidebar-nav li,
-.sidebar-bottom a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 60px;
-  cursor: pointer;
-  position: relative;
-}
-
-.sidebar-nav a,
-.sidebar-bottom a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-}
-
-.sidebar img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
-
-.sidebar-nav li:hover,
-.sidebar-bottom a:hover {
-  background-color: #d1e7dd;
-  border-radius: 8px;
-}
-
-.sidebar-nav li:hover img,
-.sidebar-bottom a:hover img {
-  opacity: 1;
-}
-
-.active-link {
-  background-color: #58b07c;
-  border-radius: 8px;
-}
-
-.active-link img {
-  opacity: 1;
-}
-
-.active-link::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #58b07c;
-  border-radius: 0 5px 5px 0;
-}
-
-.sidebar-bottom {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.sidebar-bottom a img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  opacity: 0.8;
-  transition: opacity 0.3s;
-}
 
 /* === Hero Section === */
 .hero {
-  position: relative;
-  height: 400px;
-  background-image: url('IMAGES/mainpagebg.jpeg');
-  background-size: cover;
-  background-position: center;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-  margin-bottom: -50px;
+    position: relative;
+    height: 400px;
+    background-image: url('IMAGES/mainpagebg.jpeg');
+    background-size: cover;
+    background-position: center;
+    /* This clip-path creates the slanted bottom edge */
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    margin-bottom: -50px;
 }
 
 .header-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 15px 30px 0 65px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 65px padding matches the main-content margin, keeping user-info visually right */
+    padding: 15px 30px 0 65px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .user-info {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .user-info i {
-  color: #fff;
-  font-size: 1.4rem;
-  margin-right: 15px;
-  cursor: pointer;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 1.4rem;
+    margin-right: 15px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
 }
 
 .hero-text {
-  position: absolute;
-  bottom: 25%;
-  left: 100px;
-  color: #fff;
-  font-size: 4rem;
-  line-height: 1;
-  font-weight: 700;
-  text-shadow: 0 3px 5px rgba(0,0,0,0.5);
+    position: absolute;
+    bottom: 25%;
+    left: 100px; /* Offset from the left edge */
+    color: #fff;
+    font-size: 4rem;
+    line-height: 1;
+    font-weight: 700;
+    text-shadow: 0 3px 5px rgba(0,0,0,0.5);
 }
 
 /* === Idea Section === */
 .idea-section {
-  flex-grow: 1;
-  background-color: #E0EAE3;
-  padding: 70px 100px 30px 100px;
-  display: flex;
-  gap: 50px;
+    flex-grow: 1;
+    background-color: #E0EAE3;
+    padding: 70px 100px 30px 100px;
+    display: flex;
+    gap: 50px;
 }
 
 /* Card for input */
 .idea-input-card {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 25px;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-  gap: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    gap: 15px;
 }
 
 .idea-input-card .subtitle {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #777777;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #777777;
 }
 
 .idea-input-card textarea {
-  width: 100%;
-  height: 180px;
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  resize: none;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+    width: 100%;
+    height: 180px;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: none;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .idea-input-card select {
-  width: 60%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  background-color: #f9f9f9;
+    width: 60%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: #f9f9f9;
 }
 
 .submit-button {
-  width: 120px;
-  padding: 12px;
-  background-color: #58b07c;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s, transform 0.2s;
+    width: 120px;
+    padding: 12px;
+    background-color: #58b07c;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .submit-button:hover {
-  background-color: #4aa776;
-  transform: translateY(-2px);
+    background-color: #4aa776;
+    transform: translateY(-2px);
 }
 
 .idea-image {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 15px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
 }
 
 .idea-image h2 {
-  font-size: 1.8rem;
-  font-weight: 500;
-  color: #444;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .idea-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* === Footer === */
 .footer {
-  padding: 20px 50px;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: auto;
-  border-top: 1px solid #ddd;
+    padding: 20px 50px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: auto;
+    border-top: 1px solid #ddd;
 }
 
-/* === Responsive === */
+/* === Responsive (Main Content Only) === */
 @media (max-width: 768px) {
-  .hamburger-icon { left: 15px; top: 15px; }
-  .main-content { margin-left: 0; }
-  .hero-text { left: 20px; bottom: 15%; font-size: 2.5rem; }
-  .idea-section { flex-direction: column; padding: 30px 20px; }
-  .idea-input-card { width: 100%; padding: 20px; }
-  .idea-input-card select { width: 100%; }
-  .idea-image { width: 100%; padding: 20px 0; }
-  .idea-image h2 { font-size: 1.4rem; }
-  .idea-image img { max-width: 80%; margin: 0 auto; display: block; }
-  .footer { display: none; }
-  .sidebar img { width: 28px; height: 28px; }
+    /* These styles handle the layout changes when the sidebar is hidden/collapsed on mobile */
+    .main-content { margin-left: 0; }
+    .header-overlay { padding: 15px 30px 0 30px; } /* Adjust overlay padding */
+    .hero-text { left: 20px; bottom: 15%; font-size: 2.5rem; }
+    .idea-section { flex-direction: column; padding: 30px 20px; }
+    .idea-input-card { width: 100%; padding: 20px; }
+    .idea-input-card select { width: 100%; }
+    .idea-image { width: 100%; padding: 20px 0; }
+    .idea-image h2 { font-size: 1.4rem; }
+    .idea-image img { max-width: 80%; margin: 0 auto; display: block; }
+    .footer { display: none; }
 }
-
-.shifted { margin-left: 250px; }
