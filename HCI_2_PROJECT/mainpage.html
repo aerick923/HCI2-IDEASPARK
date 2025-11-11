@@ -14,7 +14,7 @@
 <body>
     <div class="page-wrapper">
 
-        <!-- Hamburger icon (always visible) -->
+        <!-- Hamburger icon -->
         <span class="hamburger-icon" id="hamburger-icon">&#9776;</span>
 
         <!-- Sidebar -->
@@ -22,26 +22,18 @@
             <div class="sidebar-nav-wrapper">
                 <nav class="sidebar-nav">
                     <ul>
-                        <li><a href="editProfile.html" title="Profile"><img src="IMAGES/Navbar/profile.png"
-                                    alt="Profile"></a></li>
-                        <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Navbar/addidea.png"
-                                    alt="Add Idea"></a></li>
-                        <li><a href="tagidea.html" title="Tag Idea"><img src="IMAGES/Navbar/tagidea.png"
-                                    alt="Tag Idea"></a></li>
-                        <li><a href="viewIdeaList.html" title="View Idea List"><img src="IMAGES/Navbar/list.png"
-                                    alt="View Idea List"></a></li>
-                        <li><a href="editDeleteIdea.html" title="Edit Idea"><img src="IMAGES/Navbar/edit.png"
-                                    alt="Edit Idea"></a></li>
-                        <li><a href="pinIdea.html" title="Search Idea"><img src="IMAGES/Navbar/search.png"
-                                    alt="Search Idea"></a></li>
-                        <li><a href="pinIdea.html" title="Pin Idea"><img src="IMAGES/Navbar/pin.png" alt="Pin Idea"></a>
-                        </li>
-                        <li><a href="ideaCategories.html" title="Categories"><img src="IMAGES/Navbar/categories.png"
-                                    alt="Categories"></a></li>
+                        <li><a href="editProfile.html" title="Profile"><img src="IMAGES/Navbar/profile.png" alt="Profile"></a></li>
+                        <li><a href="mainpage.html" title="Add Idea"><img src="IMAGES/Navbar/addidea.png" alt="Add Idea"></a></li>
+                        <!-- Tag Idea removed -->
+                        <li><a href="viewIdeaList.html" title="View Idea List"><img src="IMAGES/Navbar/list.png" alt="View Idea List"></a></li>
+                        <li><a href="editDeleteIdea.html" title="Edit Idea"><img src="IMAGES/Navbar/edit.png" alt="Edit Idea"></a></li>
+                        <li><a href="pinIdea.html" title="Search Idea"><img src="IMAGES/Navbar/search.png" alt="Search Idea"></a></li>
+                        <li><a href="pinIdea.html" title="Pin Idea"><img src="IMAGES/Navbar/pin.png" alt="Pin Idea"></a></li>
+                        <li><a href="ideaCategories.html" title="Categories"><img src="IMAGES/Navbar/categories.png" alt="Categories"></a></li>
                     </ul>
                 </nav>
 
-                <!-- Settings icon at the bottom -->
+                <!-- Settings icon -->
                 <div class="sidebar-bottom">
                     <a href="settings.html" title="Settings">
                         <img src="IMAGES/Navbar/settings.png" alt="Settings">
@@ -58,8 +50,6 @@
                         <i class="fa-solid fa-bell"></i>
                         <img src="IMAGES/default-avatar.png" alt="User Avatar" class="user-avatar" id="mainAvatar">
                     </div>
-
-
                 </div>
                 <div class="hero-text">
                     <h1>IDEAS<br>ARE SEED</h1>
@@ -67,9 +57,18 @@
             </header>
 
             <section class="idea-section">
-                <div class="idea-input">
+                <div class="idea-input-card">
                     <p class="subtitle">Let the Idea Flow</p>
                     <textarea placeholder="Write your idea here..."></textarea>
+
+                    <!-- Category Selection -->
+                    <select id="categorySelect">
+                        <option value="music">Music</option>
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="hobby">Hobby</option>
+                    </select>
+
                     <button type="submit" class="submit-button">Submit</button>
                 </div>
 
@@ -79,17 +78,14 @@
                 </div>
             </section>
 
-            <!-- Footer -->
             <footer class="footer">
                 <p>&copy; 2025 IdeaSpark Inc. All rights reserved.</p>
             </footer>
         </main>
-
     </div>
 
-    <!-- para sa hamburger bar -->
     <script>
-    // === Hamburger sidebar toggle (already existing) ===
+    // Hamburger toggle
     const hamburger = document.getElementById('hamburger-icon');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.querySelector('.main-content');
@@ -113,34 +109,28 @@
         }
     });
 
-    // === Idea Submission Handling ===
+    // Idea Submission
     const submitButton = document.querySelector('.submit-button');
     const textarea = document.querySelector('textarea');
+    const categorySelect = document.getElementById('categorySelect');
 
     submitButton.addEventListener('click', () => {
         const ideaText = textarea.value.trim();
+        const category = categorySelect.value;
 
         if (!ideaText) {
             alert('Please write something before submitting!');
             return;
         }
 
-        // Get existing ideas from localStorage
         let ideas = JSON.parse(localStorage.getItem('ideas')) || [];
-
-        // Add new idea
-        ideas.push({ text: ideaText, pinned: false });
-
-        // Save back to localStorage
+        ideas.push({ text: ideaText, category: category, pinned: false });
         localStorage.setItem('ideas', JSON.stringify(ideas));
 
-        // Notify user
         alert('Your idea has been submitted successfully!');
-
-        // Clear textarea
         textarea.value = '';
+        categorySelect.value = 'music';
     });
-</script>
+    </script>
 </body>
-
 </html>
