@@ -1,102 +1,168 @@
+/* === General Reset & Base Styles === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; 
 }
 
 body {
-    display: flex;
-    background-color: #f5f5f5;
+    /* Set gradient background */
+    background: linear-gradient(180deg, #FFFFFF 0%, #E2F5E6 40%, #D4EAD9 100%); 
+    min-height: 100vh;
 }
 
-.container {
+/* === Main Layout Wrapper (Required for Flex) === */
+.page-wrapper {
     display: flex;
+    min-height: 100vh;
+}
+
+/* === Main Content (Desktop Initial Setup) === */
+.main-content {
+    /* Initial margin for the collapsed sidebar (65px is standard collapsed width) */
+    margin-left: 65px; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    padding: 0 40px; 
+    transition: margin-left 0.3s ease; 
+}
+
+
+/* === Header === */
+.header {
+    background: transparent; 
+    height: 100px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    padding: 30px 0 0 0; 
+    color: #333;
+    text-shadow: none;
     width: 100%;
 }
 
-/* Sidebar */
-.sidebar {
-    width: 70px;
-    background-color: #e6f2e6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 20px;
+.header-text {
+    padding-left: 0;
+    max-width: 400px;
 }
 
-.profile-img {
+.page-title {
+    font-size: 3rem; 
+    font-weight: 900; 
+    line-height: 1.1;
+    color: #333; 
+    text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 0 0 5px rgba(0,0,0,0.15);
+}
+
+/* Header Icons (Bell and Avatar) */
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: -15px; 
+    margin-right: 0; 
+}
+
+.notification-bell {
+    font-size: 30px;
+    color: #333; 
+    cursor: pointer;
+}
+
+.user-avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-bottom: 20px;
+    object-fit: cover;
+    border: 3px solid #333; 
+    box-shadow: 0 0 0 1px #FFF; 
 }
 
-.menu ul {
-    list-style: none;
-}
-
-.menu ul li {
-    margin: 15px 0;
-}
-
-.menu ul li img {
-    width: 24px;
-    height: 24px;
-}
-
-/* Main Content */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header */
-.header {
-    background: url('mountains.jpg') no-repeat center center/cover;
-    height: 150px;
-    display: flex;
-    align-items: center;
-    padding-left: 20px;
-    color: white;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-}
-
-/* Ideas Section */
+/* === Idea List Section === */
 .ideas {
-    padding: 20px;
+    padding: 40px 0; 
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px; 
+    width: 100%;
 }
 
 .idea-card {
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    padding: 20px 30px; 
     color: white;
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    width: 100%; 
 }
 
-.idea1 { background-color: #a8e6cf; }
-.idea2 { background-color: #81e6d9; }
-.idea3 { background-color: #68d391; }
-.idea4 { background-color: #48bb78; }
-.idea5 { background-color: #38a169; }
-.idea6 { background-color: #2f855a; }
-.idea7 { background-color: #22543d; }
+.idea-card:hover {
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Specific Idea Card Colors */
+.idea1 { background-color: #55a86a; } 
+.idea2 { background-color: #4CAF50; } 
+.idea3 { background-color: #388E3C; } 
+.idea4 { background-color: #2E7D32; } 
+.idea5 { background-color: #1B5E20; } 
+.idea6 { background-color: #0E5E0F; } 
+.idea7 { background-color: #004D40; } 
+
 
 .date {
-    font-size: 0.9em;
+    font-size: 1em; 
+    opacity: 0.8; 
 }
 
-/* Footer */
+/* === Footer === */
 .footer {
+    padding: 15px 0;
     text-align: center;
-    padding: 10px;
-    font-size: 0.8em;
-    color: #555;
+    font-size: 0.8rem;
+    color: #333;
+    background: none; 
+    margin-top: auto; 
+    border-top: none; 
+}
+
+/* === Media Query for mobile === */
+@media (max-width: 768px) {
+    .main-content {
+        /* Sets margin to 0 for mobile, allowing sidebar.css to use transform for shifting */
+        margin-left: 0;
+        padding: 0 15px; 
+    }
+    
+    .header {
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 0 0 0;
+    }
+    .header-icons {
+        margin-top: 15px; 
+        margin-right: 0; 
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .page-title {
+        font-size: 2rem; 
+    }
+
+    .ideas {
+        padding: 20px 0;
+    }
+    
+    .idea-card {
+        padding: 15px 20px;
+        font-size: 0.9rem;
+    }
 }
