@@ -378,29 +378,42 @@ body {
     width: 100%;
   }
 
+  /* ✅ Fix for mobile sidebar */
   .sidebar {
-    width: 100%;
-    height: 60px;
-    flex-direction: row;
-    padding: 0 20px;
-    bottom: 0;
-    top: auto;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.08);
+    position: fixed;
+    top: 0;
+    left: -250px; /* hide initially */
+    width: 250px;
+    height: 100%;
+    background-color: #EAEAEA;
+    transition: left 0.3s ease;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  }
+
+  .sidebar.sidebar-active {
     left: 0;
   }
 
-  .sidebar-nav-wrapper,
-  .sidebar-nav,
-  .sidebar-bottom {
-    display: none;
+  /* ✅ Keep hamburger visible and clickable */
+  #hamburger-icon {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 1001;
+    border-radius: 8px;
+    padding: 6px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    cursor: pointer;
   }
 
-  .sidebar img {
-    width: 28px;
-    height: 28px;
+  /* ✅ Prevent content from jumping */
+  .shifted {
+    margin-left: 0;
   }
 }
-
 /* Optional: shift main content when sidebar is open */
 .shifted {
   margin-left: 250px;
