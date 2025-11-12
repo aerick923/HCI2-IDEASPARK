@@ -13,126 +13,12 @@ body {
 }
 
 /* === Main Layout Wrapper === */
-.page-wrapper {
-    display: flex;
-    min-height: 100vh;
-}
+/* Removed .page-wrapper, sidebar, etc. */
 
-/* === Sidebar (Fixed Layout for Desktop) === */
-.sidebar {
-    width: 200px; /* Expanded width for text */
-    position: fixed;
-    top: 0;
-    left: -250px; /* Default hidden for mobile */
-    height: 100vh;
-    background-color: #EAEAEA;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.08);
-    display: flex;
-    flex-direction: column;
-    z-index: 150;
-    align-items: flex-start; 
-    padding: 20px 0 20px 0; 
-    transition: left 0.3s ease; /* Keep transition for hamburger animation */
-}
-
-.sidebar-active {
-    left: 0; /* Slide in on mobile/hamburger click */
-}
-
-/* Sidebar Profile Section */
-.sidebar-profile {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #D1E7DD; /* Light green background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 30px 20px; 
-    border: 2px solid white; 
-    box-shadow: 0 0 0 1px #ccc; 
-}
-
-.sidebar-profile-icon {
-    width: 70%; 
-    height: 70%;
-    object-fit: contain;
-    filter: brightness(0); /* Black icon */
-}
-
-/* Sidebar Nav Wrapper */
-.sidebar-nav-wrapper {
-    flex-grow: 1;
-    width: 100%;
-    margin-top: 0; 
-}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding-left: 0;
-}
-
-/* Sidebar Links (Container for Icon + Text) */
-.sidebar-nav li,
-.sidebar-bottom {
-    width: 100%;
-}
-
-.sidebar-nav li a,
-.sidebar-bottom a {
-    display: flex;
-    align-items: center;
-    width: 100%; 
-    height: 40px; 
-    margin: 5px 0; 
-    text-decoration: none;
-    color: #333; 
-    padding-left: 20px; 
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.sidebar img {
-    width: 20px; 
-    height: 20px;
-    object-fit: contain;
-    opacity: 0.8; 
-    filter: brightness(0.2); 
-    margin-right: 10px; 
-}
-
-.sidebar-nav span {
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-/* === Hover & Active Effects === */
-.sidebar-nav li a:hover,
-.sidebar-bottom a:hover {
-    background-color: #d1e7dd; 
-}
-
-.active-link-wrapper a {
-    background-color: #D1E7DD; /* Active page highlight */
-}
-
-.active-link-wrapper img {
-    filter: brightness(0);
-}
-
-
-/* === Sidebar Bottom (Settings Icon) === */
-.sidebar-bottom {
-    margin-top: auto; 
-    margin-bottom: 0; 
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
 
 /* === Main Content Layout === */
 .main-content {
-    margin-left: 0; /* Default margin for mobile */
+    margin-left: 0; /* No sidebar means no default margin needed */
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -141,21 +27,9 @@ body {
     transition: margin-left 0.3s ease;
 }
 
-/* Shifted class for open sidebar on desktop or mobile */
-.shifted {
-    margin-left: 200px; 
-}
+/* Removed .shifted class */
 
-/* === Hamburger Icon (Keep hidden on large screens) === */
-.hamburger-icon {
-    font-size: 2rem;
-    cursor: pointer;
-    position: fixed;
-    top: 15px;
-    left: 20px;
-    z-index: 200;
-    display: none; /* Hidden by default, shown via media query/JS on mobile */
-}
+/* Removed .hamburger-icon styles */
 
 
 /* === Header === */
@@ -295,152 +169,57 @@ body {
 
 /* === Media Query for Mobile (Restores collapse functionality) === */
 @media (max-width: 1024px) {
-    /* Show hamburger on smaller screens */
-    .hamburger-icon {
-        display: block; 
-    }
-
-    /* Adjust sidebar width for collapsed view on mobile */
-    .sidebar {
-        width: 65px;
-        left: -65px; 
-        padding-top: 50px;
-    }
-    .sidebar-active {
-        left: 0; 
-    }
-    .sidebar-nav li a,
-    .sidebar-bottom a {
-        padding-left: 0;
-        justify-content: center;
-    }
-    .sidebar-nav span {
-        display: none; /* Hide text on collapsed mobile sidebar */
-    }
+    /* Sidebar media queries removed */
 
     /* Adjust main content margin for mobile */
     .main-content {
         margin-left: 0; /* Default margin is 0 */
         padding: 0 15px;
     }
-    .shifted {
-        margin-left: 65px; /* Shift by 65px when sidebar is open */
-    }
+
+    /* .shifted class removed */
 
     .header-icons {
         margin-right: 15px; 
     }
 
     /* Locate and REPLACE the entire .search-section block */
-.search-section {
-    /* Set the yellow box style */
-    background-color: #fcd34d;
-    border-radius: 20px;
-    padding: 40px;
-    width: 100%; 
-    text-align: center;
-    position: relative; /* Keep this */
-    height: 400px; 
-    margin-top: 50px; 
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    /* NEW: Add z-index to the container itself to give it high priority in the main-content flow */
-    z-index: 10; 
-}
+    .search-section {
+        /* Set the yellow box style */
+        background-color: #fcd34d;
+        border-radius: 20px;
+        padding: 40px;
+        width: 100%; 
+        text-align: center;
+        position: relative; /* Keep this */
+        height: 400px; 
+        margin-top: 50px; 
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 900px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        /* NEW: Add z-index to the container itself to give it high priority in the main-content flow */
+        z-index: 10; 
+    }
 
 
-/* Locate and REPLACE the entire .search-box block */
-.search-box {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 30px;
-    padding: 10px 20px;
-    width: 80%;
-    max-width: 600px;
-    margin-top: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    
-    /* NEW/FIXED: Force the search box to the top layer */
-    position: relative; 
-    z-index: 20; /* Give it the highest z-index priority within the yellow box */
-}
-
-
-/* Locate and REPLACE the entire .illustration block */
-.illustration {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    /* NEW/FIXED: Ensure the illustration is below the search box */
-    z-index: 5; 
-    pointer-events: none; /* Crucial: This setting makes the element ignore mouse events, allowing clicks to pass through to the element underneath it. */
-}
-}
-
-/* Add to searchIdeas.css */
-
-/* Style for the search results container */
-.search-results {
-    padding: 20px 0;
-    width: 100%;
-    max-width: 900px;
-    margin: 20px auto 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.search-info {
-    text-align: center;
-    color: #555;
-    font-style: italic;
-    padding: 40px 0;
-}
-
-/* Style for individual idea result cards */
-.result-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.result-card h3 {
-    font-size: 1.2rem;
-    color: #333;
-    margin: 0;
-}
-
-.result-card p {
-    font-size: 0.9rem;
-    color: #777;
-    margin: 0;
-    flex-grow: 1;
-    padding-left: 20px;
-}
-
-.result-card button {
-    background-color: #58b07c; /* Green color */
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.result-card button:hover {
-    background-color: #4a9163;
+    /* Locate and REPLACE the entire .search-box block */
+    .search-box {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        border-radius: 30px;
+        padding: 10px 20px;
+        width: 80%;
+        max-width: 600px;
+        margin-top: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        
+        /* NEW/FIXED: Force the search box to the top layer */
+        position: relative; 
+        z-index: 20; /* Give it the highest z-index priority within the yellow box */
+    }
 }
