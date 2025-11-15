@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   <link rel="stylesheet" href="signup.css">
 </head>
+
 <body>
   <div class="auth-container reverse">
     <div class="auth-form">
       <h2>Create Account</h2>
       <p class="subtitle">Sign up to get started</p>
-      <form id="signup-form"> <!-- Added an ID to easily select the form -->
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
+      <form id="signup-form">
+
+        <label for="firstname">First Name</label>
+        <input type="text" id="firstname" placeholder="Enter your first name" required>
+
+        <label for="lastname">Last Name</label>
+        <input type="text" id="lastname" placeholder="Enter your last name" required>
 
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Enter your email" required>
@@ -26,10 +32,11 @@
 
         <button type="submit">Sign Up</button>
 
-        <p class="switch">Already have an account? 
-          <a href="indec.html">Login</a>
+        <p class="switch">Already have an account?
+          <a href="index.html">Login</a>
         </p>
       </form>
+
     </div>
 
     <div class="auth-image">
@@ -37,29 +44,35 @@
     </div>
   </div>
 
-  <!-- Added JavaScript here -->
+  <!-- Modern Alert Modal -->
+  <div id="success-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h3>Success!</h3>
+      <p>Your account has been successfully created. Please log in to continue.</p>
+      <button id="ok-btn">OK</button>
+    </div>
+  </div>
+
   <script>
-    // 1. Select the form using its new ID
     const signupForm = document.getElementById('signup-form');
+    const modal = document.getElementById('success-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const okBtn = document.getElementById('ok-btn');
 
-    // 2. Add an event listener for the 'submit' event
     signupForm.addEventListener('submit', function (event) {
-      // In a real application, you would add logic here to:
-      // A. Validate passwords match
-      // B. Send data to a server (e.g., via fetch() API)
+      event.preventDefault();
 
-      // Assuming signup is successful:
-      // Prevent the form from submitting in the traditional HTML way,
-      // which would normally refresh the page.
-      event.preventDefault(); 
-
-      // 3. Show the pop-up alert
-      alert('You have successfully created an account!');
-
-      // Optional: Redirect the user to the login page after they click 'OK' on the alert
-      // window.location.href = 'index.html';
+      // Show modal
+      modal.classList.add('show');
     });
-  </script>
 
+    // Close modal on clicking X
+    closeBtn.addEventListener('click', () => modal.classList.remove('show'));
+
+    // Close modal on clicking OK
+    okBtn.addEventListener('click', () => modal.classList.remove('show'));
+  </script>
 </body>
+
 </html>
