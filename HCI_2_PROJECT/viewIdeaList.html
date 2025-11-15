@@ -9,13 +9,10 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <div class="page-wrapper">
-    <!-- hamburger (same id used by mainpage.js logic) -->
     <span class="hamburger-icon" id="hamburger-icon">&#9776;</span>
 
-    <!-- Sidebar (structure matches mainpage) -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-nav-wrapper">
         <nav class="sidebar-nav">
@@ -26,7 +23,6 @@
             <li><a href="searchIdeas.html" title="Search Idea"><img src="IMAGES/Navbar/search.png" alt="Search Idea"></a></li>
           </ul>
         </nav>
-
         <div class="sidebar-bottom">
           <a href="settings.html" title="Settings">
             <img src="IMAGES/Navbar/settings.png" alt="Settings">
@@ -35,20 +31,16 @@
       </div>
     </aside>
 
-    <!-- Main content -->
     <main class="main-content">
       <header class="header">
         <div class="header-text">
           <h1 class="page-title">VIEW YOUR IDEAS HERE</h1>
         </div>
-
-        <!-- avatar: give it id="mainAvatar" so JS can load user's saved avatar -->
         <div class="header-icons">
           <img src="IMAGES/user-avatar.jpg" id="mainAvatar" alt="User Avatar" class="user-avatar">
         </div>
       </header>
 
-      <!-- Filters (category + sort side-by-side) -->
       <div class="filter-controls">
         <div class="filter-group">
           <label for="categorySelect">Select Category:</label>
@@ -60,7 +52,6 @@
             <option value="hobby" data-color="#2E7D32">Hobby</option>
           </select>
         </div>
-
         <div class="filter-group">
           <label for="sortSelect">Sort by:</label>
           <select id="sortSelect" aria-label="Sort by">
@@ -73,13 +64,26 @@
         </div>
       </div>
 
-      <!-- ideas appear here -->
       <div id="ideasContainer" class="ideas-container"></div>
 
       <footer class="footer">
         <p>© 2025 IdeaSpark Inc. All rights reserved.</p>
       </footer>
     </main>
+  </div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <!-- Modal overlay -->
+  <div id="modal-overlay" class="hidden">
+    <div class="modal-box">
+      <p id="modal-message"></p>
+      <div class="modal-buttons">
+        <button id="modal-confirm">OK</button>
+        <button id="modal-cancel">Cancel</button>
+      </div>
+    </div>
   </div>
 
   <script src="viewIdeaList.js"></script>
