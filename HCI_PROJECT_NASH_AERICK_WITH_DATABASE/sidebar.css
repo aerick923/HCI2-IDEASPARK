@@ -1,0 +1,165 @@
+/* --- Core Layout --- */
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    /* DEFAULT DESKTOP: Small margin for closed sidebar */
+    margin-left: 65px; 
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* CRITICAL FOR SMOOTHNESS: Apply transition to margin-left */
+    transition: margin-left 0.3s ease;
+    /* You may need to adjust padding in your page-specific CSS (e.g., ideaCategories.css) */
+}
+
+/* --- Hamburger Icon --- */
+.hamburger-icon {
+    font-size: 2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 200;
+    color: #444; 
+}
+
+/* --- Sidebar Container & Collapse Logic --- */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    height: 100vh;
+    background-color: #EAEAEA;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    z-index: 150;
+    /* CRITICAL FOR SMOOTHNESS: Apply transition to left position */
+    transition: left 0.3s ease;
+}
+
+.sidebar-active {
+    left: 0; /* Slides into view */
+}
+
+/* --- Content Shift Logic (Desktop Smooth Shift) --- */
+/* This is what shifts the main content smoothly when sidebar-active is toggled */
+.shifted {
+    margin-left: 250px; 
+}
+
+/* --- Sidebar Navigation Styles (Icon Centering) --- */
+.sidebar-nav-wrapper {
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 60px; 
+    display: flex;
+    align-items: center; /* Center the nav items block */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the <li> items horizontally */
+}
+
+.sidebar-nav li {
+    display: flex;
+    justify-content: center; /* Center icon horizontally */
+    align-items: center; /* Center icon vertically */
+    width: 60px; /* Reduced width to visually frame the icon */
+    height: 60px;
+    margin: 5px 0;
+    cursor: pointer;
+    position: relative;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.sidebar-nav a,
+.sidebar-bottom a {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.sidebar img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+/* Hover & Active Effects */
+.sidebar-nav li:hover,
+.sidebar-bottom a:hover {
+    background-color: #d1e7dd;
+    border-radius: 8px;
+}
+
+.active-link {
+    background-color: #58b07c;
+    border-radius: 8px;
+}
+
+.active-link img {
+    opacity: 1;
+}
+
+/* Active Link Indicator Bar */
+.active-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #58b07c;
+    border-radius: 0 5px 5px 0;
+}
+
+/* Sidebar Bottom (Settings) */
+.sidebar-bottom {
+    margin-top: auto; /* Push to bottom */
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar-bottom a {
+    width: 60px; /* Match icon size */
+    height: 60px; /* Match icon size */
+    margin: 0;
+}
+
+
+/* -------------------------------------- */
+/* === Mobile/Tablet Responsiveness (Below 768px) === */
+/* -------------------------------------- */
+
+@media (max-width: 768px) {
+    /* FIX 1: Ensure main content starts at 0 margin on mobile */
+    .main-content {
+        margin-left: 0;
+    }
+
+    /* FIX 2: Override the .shifted class to prevent squishing on mobile.
+       This ensures the content stays put and the sidebar overlays it. */
+    .shifted {
+        margin-left: 0 !important; 
+    }
+}
